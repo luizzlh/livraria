@@ -4,7 +4,7 @@ public class Cliente {
     private String nome;
     private String email;
     private int idade;
-    private int devedor;
+    private int devedor = 0;
 
     public int getDevedor() {
         return devedor;
