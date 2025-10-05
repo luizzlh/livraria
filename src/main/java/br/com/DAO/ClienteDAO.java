@@ -32,7 +32,7 @@ public class ClienteDAO {
         }
     }
 
-    public void atualizaStatusCliente(Cliente cliente){
+    public void atualizaStatusCliente(int idCliente){
 
         String  queryUpdateCliente = "UPDATE CLIENTES SET DEVEDOR = 1 WHERE ID = ?";
 
@@ -40,7 +40,7 @@ public class ClienteDAO {
 
         try{
             preparedStatement = Conexao.getConexao().prepareStatement(queryUpdateCliente);
-            preparedStatement.setInt(1, 1);
+            preparedStatement.setInt(1, idCliente);
 
             preparedStatement.execute();
 
