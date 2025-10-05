@@ -33,7 +33,7 @@ public class LivroDAO {
 
     }
 
-    public static void atualizarStatusLivroParaAlugado(int idLivro){
+    private static void atualizarStatusLivroParaAlugado(int idLivro){
 
         String queryUpdateStatusLivro = "UPDATE LIVROS SET STATUS = 1 WHERE ID = ?";
 
@@ -54,7 +54,7 @@ public class LivroDAO {
         }
     }
 
-    public static void atualizarStatusLivroParaDisponivel(int idLivro){
+    private static void atualizarStatusLivroParaDisponivel(int idLivro){
 
         String queryUpdateStatusLivro = "UPDATE LIVROS SET STATUS = 0 WHERE ID = ?";
 

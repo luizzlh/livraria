@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class ClienteDAO {
 
-    public void cadastrarCliente(Cliente cliente){
+    private void cadastrarCliente(Cliente cliente){
 
         String queryInsertCliente = "INSERT INTO CLIENTES (NOME, IDADE, EMAIL, DEVEDOR) VALUES (?, ?, ?, ?)";
 
@@ -32,7 +32,7 @@ public class ClienteDAO {
         }
     }
 
-    public void atualizarStatusClienteParaDevedor(int idCliente){
+    private void atualizarStatusClienteParaDevedor(int idCliente){
 
         String  queryUpdateCliente = "UPDATE CLIENTES SET DEVEDOR = 1 WHERE ID = ?";
 
@@ -53,7 +53,7 @@ public class ClienteDAO {
         }
     }
 
-    public static void atualizarStatusClienteParaDisponivel(int idCliente){
+    private static void atualizarStatusClienteParaDisponivel(int idCliente){
 
         String  queryUpdateCliente = "UPDATE CLIENTES SET DEVEDOR = 0 WHERE ID = ?";
 
