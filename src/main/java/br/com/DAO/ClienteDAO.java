@@ -10,12 +10,12 @@ public class ClienteDAO {
 
     public void cadastrarCliente(Cliente cliente){
 
-        String cadastrarUsuario = "INSERT INTO CLIENTES (NOME, IDADE, EMAIL, DEVEDOR) VALUES (?, ?, ?, ?)";
+        String queryInsertCliente = "INSERT INTO CLIENTES (NOME, IDADE, EMAIL, DEVEDOR) VALUES (?, ?, ?, ?)";
 
         PreparedStatement preparedStatement = null;
 
         try{
-            preparedStatement = Conexao.getConexao().prepareStatement(cadastrarUsuario);
+            preparedStatement = Conexao.getConexao().prepareStatement(queryInsertCliente);
             preparedStatement.setString(1, cliente.getNome());
             preparedStatement.setInt(2, cliente.getIdade());
             preparedStatement.setString(3, cliente.getEmail());
@@ -27,9 +27,30 @@ public class ClienteDAO {
 
             System.out.println("Cliente cadastrado com sucessO!");
         } catch(SQLException e){
+            System.out.println("Não foi possivel cadastrar esse usuário: ");
             e.printStackTrace();
         }
+    }
 
+    public void atualizaStatusCliente(Cliente cliente){
+
+        String  queryUpdateCliente = "UPDATE CLIENTES SET DEVEDOR = 1 WHERE ID = ?";
+
+        PreparedStatement preparedStatement = null;
+
+        try{
+            preparedStatement = Conexao.getConexao().prepareStatement(queryUpdateCliente);
+            preparedStatement.setInt(1, 1);
+
+            preparedStatement.execute();
+
+            preparedStatement.close();
+
+            System.out.println("Status cliente atualizado com sucesso!");
+        }catch (SQLException e){
+            System.out.println("Não foi possivel atualizar o status: ");
+            e.printStackTrace();
+        }
     }
 
 }
