@@ -10,12 +10,12 @@ public class LivroDAO {
 
     private void cadastrarLivro(Livro livro){
 
-        String cadastrarLivro = "INSERT INTO LIVROS (AUTOR, NOME, STATUS) VALUES (?, ?, ?)";
+        String queryCadastraLivro = "INSERT INTO LIVROS (AUTOR, NOME, STATUS) VALUES (?, ?, ?)";
 
         PreparedStatement preparedStatement = null;
 
         try{
-            preparedStatement = Conexao.getConexao().prepareStatement(cadastrarLivro);
+            preparedStatement = Conexao.getConexao().prepareStatement(queryCadastraLivro);
             preparedStatement.setString(1, livro.getAutor());
             preparedStatement.setString(2, livro.getNome());
             preparedStatement.setInt(3, 0);
