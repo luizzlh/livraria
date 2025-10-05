@@ -19,7 +19,7 @@ public class ClienteDAO {
             preparedStatement.setString(1, cliente.getNome());
             preparedStatement.setInt(2, cliente.getIdade());
             preparedStatement.setString(3, cliente.getEmail());
-            preparedStatement.setInt(4, 0);
+            preparedStatement.setInt(4, cliente.getDevedor());
 
             preparedStatement.execute();
 
@@ -73,5 +73,4 @@ public class ClienteDAO {
             e.printStackTrace();
         }
     }
-
 }
