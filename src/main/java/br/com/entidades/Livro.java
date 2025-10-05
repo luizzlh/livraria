@@ -3,7 +3,7 @@ package br.com.entidades;
 public class Livro {
     private String autor;
     private String nome;
-    private int status;
+    private int status = 0;
 
     public String getAutor() {
         return autor;
