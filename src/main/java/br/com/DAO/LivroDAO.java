@@ -1,2 +1,9 @@
-package br.com.DAO;public class LivroDAO {
+package br.com.DAO;
+
+public class LivroDAO {
+
+    String cadastrarLivro = "INSERT INTO LIVROS (AUTOR, NOME, STATUS) VALUES (?, ?, ?)";
+
+
+
 }
