@@ -32,9 +32,30 @@ public class ClienteDAO {
         }
     }
 
-    public void atualizaStatusCliente(int idCliente){
+    public void atualizarStatusClienteParaDevedor(int idCliente){
 
         String  queryUpdateCliente = "UPDATE CLIENTES SET DEVEDOR = 1 WHERE ID = ?";
+
+        PreparedStatement preparedStatement = null;
+
+        try{
+            preparedStatement = Conexao.getConexao().prepareStatement(queryUpdateCliente);
+            preparedStatement.setInt(1, idCliente);
+
+            preparedStatement.execute();
+
+            preparedStatement.close();
+
+            System.out.println("Status cliente atualizado com sucesso!");
+        }catch (SQLException e){
+            System.out.println("Não foi possivel atualizar o status: ");
+            e.printStackTrace();
+        }
+    }
+
+    public static void atualizarStatusClienteParaDisponivel(int idCliente){
+
+        String  queryUpdateCliente = "UPDATE CLIENTES SET DEVEDOR = 0 WHERE ID = ?";
 
         PreparedStatement preparedStatement = null;
 
