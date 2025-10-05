@@ -18,7 +18,7 @@ public class LivroDAO {
             preparedStatement = Conexao.getConexao().prepareStatement(queryCadastraLivro);
             preparedStatement.setString(1, livro.getAutor());
             preparedStatement.setString(2, livro.getNome());
-            preparedStatement.setInt(3, 0);
+            preparedStatement.setInt(3, livro.getStatus());
 
             preparedStatement.execute();
 
@@ -74,7 +74,4 @@ public class LivroDAO {
             e.printStackTrace();
         }
     }
-
-
-
 }
