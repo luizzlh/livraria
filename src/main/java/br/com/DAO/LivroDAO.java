@@ -52,7 +52,27 @@ public class LivroDAO {
             System.out.println("Não foi possível atualizar o status do livro: ");
             e.printStackTrace();
         }
+    }
 
+    public static void atualizarStatusLivroParaDisponivel(int idLivro){
+
+        String queryUpdateStatusLivro = "UPDATE LIVROS SET STATUS = 0 WHERE ID = ?";
+
+        PreparedStatement preparedStatement = null;
+
+        try{
+            preparedStatement = Conexao.getConexao().prepareStatement(queryUpdateStatusLivro);
+            preparedStatement.setInt(1, idLivro);
+
+            preparedStatement.execute();
+
+            preparedStatement.close();
+
+            System.out.println("Status do livro atualizado com sucesso!");
+        } catch(SQLException e){
+            System.out.println("Não foi possível atualizar o status do livro: ");
+            e.printStackTrace();
+        }
     }
 
 
