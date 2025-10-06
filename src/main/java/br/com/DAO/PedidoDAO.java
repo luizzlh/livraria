@@ -11,7 +11,7 @@ public class PedidoDAO {
 
     private static void criarPedido(int idCliente, int idLivro){
 
-        String queryInsertPedido = "INSERT INTO PEDIDOS (IDCLIENTE, IDLIVRO, DATAPEDIDO, STATUS) VALUES (?, ?, CURDATE(), ?)";
+        String queryInsertPedido = "INSERT INTO PEDIDOS (IDCLIENTE, IDLIVRO, DATAPEDIDO) VALUES (?, ?, CURDATE())";
 
         PreparedStatement preparedStatement = null;
 
@@ -19,7 +19,6 @@ public class PedidoDAO {
             preparedStatement = Conexao.getConexao().prepareStatement(queryInsertPedido);
             preparedStatement.setInt(1, idCliente);
             preparedStatement.setInt(2, idLivro);
-            preparedStatement.setInt(4, pedido.getStatus());
 
             preparedStatement.execute();
 
@@ -31,6 +30,10 @@ public class PedidoDAO {
             System.out.println("Não foi possivel criar o pedido: ");
             e.printStackTrace();
         }
+    }
+
+    private static void atualizarPedido(int idPedido){
+
     }
 
 }
