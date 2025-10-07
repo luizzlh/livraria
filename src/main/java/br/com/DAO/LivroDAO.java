@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class LivroDAO {
 
-    private void cadastrarLivro(Livro livro){
+    public static void cadastrarLivro(Livro livro){
 
         String queryCadastraLivro = "INSERT INTO LIVROS (AUTOR, NOME, STATUS) VALUES (?, ?, ?)";
 
@@ -33,7 +33,7 @@ public class LivroDAO {
 
     }
 
-    private static void atualizarStatusLivroParaAlugado(int idLivro){
+    public static void atualizarStatusLivroParaAlugado(int idLivro){
 
         String queryUpdateStatusLivro = "UPDATE LIVROS SET STATUS = 1 WHERE ID = ?";
 
@@ -54,7 +54,7 @@ public class LivroDAO {
         }
     }
 
-    private static void atualizarStatusLivroParaDisponivel(int idLivro){
+    public static void atualizarStatusLivroParaDisponivel(int idLivro){
 
         String queryUpdateStatusLivro = "UPDATE LIVROS SET STATUS = 0 WHERE ID = ?";
 
