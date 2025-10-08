@@ -3,6 +3,7 @@ package br.com.livraria;
 import br.com.DAO.ClienteDAO;
 import br.com.DAO.LivroDAO;
 import br.com.DAO.PedidoDAO;
+import br.com.Repositorio.Conexao;
 import br.com.entidades.Cliente;
 
 import java.util.Scanner;
@@ -23,6 +24,7 @@ public class Main {
 
         switch (escolha){
             case 1:
+                Livraria.menuCadastro();
                 break;
             case 2:
                 break;
@@ -34,14 +36,14 @@ public class Main {
                 break;
             default:
                 menu();
+                break;
         }
 
 
     }
 
     public static void main(String[] args) {
-
-
+        menu();
 
     }
 }
