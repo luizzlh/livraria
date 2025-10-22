@@ -11,7 +11,6 @@ import java.util.Scanner;
 
 public class Livraria {
 
-    private static Livro livro = new Livro();
     private static Cliente cliente;
     private static Pedido pedido;
     private static LivroDAO livroDAO;
@@ -20,6 +19,7 @@ public class Livraria {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void menuCadastro(){
+        Livro livro = new Livro();
         System.out.println("------------------");
         System.out.println("Digite o nome do livro: ");
         String tituloLivro = scanner.nextLine();
@@ -30,7 +30,7 @@ public class Livraria {
         livro.setAutor(nomeAutorLivro);
 
         try{
-            LivroDAO.cadastrarLivro(livro);
+            LivroDAO.verificaLivroExistente(livro);
             Main.menu();
         } catch (Exception e){
             e.printStackTrace();
