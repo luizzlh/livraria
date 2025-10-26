@@ -19,14 +19,15 @@ public class Main {
         System.out.println("4 - Devolver livro");
         System.out.println("5 - Sair");
         System.out.println("-----------------------------------");
-        System.out.println("Sua escolha: ");
+        System.out.print("Sua escolha: ");
         int escolha = scanner.nextInt();
 
         switch (escolha){
             case 1:
-                Livraria.menuCadastro();
+                Livraria.menuCadastroLivro();
                 break;
             case 2:
+                Livraria.menuCadastroCliente();
                 break;
             case 3:
                 break;
