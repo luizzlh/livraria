@@ -11,19 +11,17 @@ import java.util.Scanner;
 
 public class Livraria {
 
-    private static Cliente cliente;
-    private static Pedido pedido;
     private static LivroDAO livroDAO;
     private static ClienteDAO clienteDAO;
     private static PedidoDAO pedidoDAO;
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void menuCadastro(){
+    public static void menuCadastroLivro(){
         Livro livro = new Livro();
         System.out.println("------------------");
-        System.out.println("Digite o nome do livro: ");
+        System.out.print("Digite o nome do livro: ");
         String tituloLivro = scanner.nextLine();
-        System.out.println("Digite o nome do autor: ");
+        System.out.print("Digite o nome do autor: ");
         String nomeAutorLivro = scanner.nextLine();
 
         livro.setNome(tituloLivro);
@@ -36,6 +34,33 @@ public class Livraria {
             e.printStackTrace();
         }
     }
+
+    public static void menuCadastroCliente(){
+        Cliente cliente = new Cliente();
+
+        System.out.println("------------------");
+        System.out.print("Digite o nome do cliente: ");
+        String nomeCliente = scanner.nextLine();
+
+        System.out.print("Digite a idade do cliente: ");
+        int idadeCliente = Integer.parseInt(scanner.nextLine().trim());
+
+        System.out.print("Digite o email do cliente: ");
+        String emailCliente = scanner.nextLine();
+
+        cliente.setNome(nomeCliente);
+        cliente.setIdade(idadeCliente);
+        cliente.setEmail(emailCliente);
+
+        try{
+            ClienteDAO.verificaClienteExistente(cliente);
+            Main.menu();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void menuAlugaLivro
 
 
 
