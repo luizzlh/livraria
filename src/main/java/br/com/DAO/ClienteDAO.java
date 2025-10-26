@@ -1,12 +1,46 @@
 package br.com.DAO;
 
+import br.com.Exceptions.ClienteExistenteException;
+import br.com.Exceptions.LivroExistenteException;
 import br.com.Repositorio.Conexao;
 import br.com.entidades.Cliente;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ClienteDAO {
+
+    public static void verificaClienteExistente(Cliente cliente){
+        String queryVerificaClienteExistente = "SELECT * FROM CLIENTES WHERE EMAIL = ?";
+        PreparedStatement preparedStatementSelect = null;
+        ResultSet resultSet = null;
+
+        try{
+            preparedStatementSelect = Conexao.getConexao().prepareStatement(queryVerificaClienteExistente);
+            preparedStatementSelect.setString(1, cliente.getEmail());
+            resultSet = preparedStatementSelect.executeQuery();
+
+            if(resultSet.next()){
+                throw new ClienteExistenteException("Cliente existente!");
+            }else{
+                cadastrarCliente(cliente);
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (preparedStatementSelect != null) {
+                    preparedStatementSelect.close();
+                }
+            } catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     public static void cadastrarCliente(Cliente cliente){
 
