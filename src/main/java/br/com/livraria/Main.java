@@ -30,6 +30,7 @@ public class Main {
                 Livraria.menuCadastroCliente();
                 break;
             case 3:
+                Livraria.menuAlugaLivro();
                 break;
             case 4:
                 break;
