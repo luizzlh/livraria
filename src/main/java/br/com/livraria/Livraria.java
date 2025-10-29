@@ -60,7 +60,17 @@ public class Livraria {
         }
     }
 
-    public static void menuAlugaLivro
+    public static void menuAlugaLivro(){
+        System.out.println("------------------");
+        System.out.print("Digite o ID do Livro a ser alugado: ");
+        int idLivroAluguel = scanner.nextInt();
+        System.out.println("Digite o ID do Cliente requerente: ");
+        int idClienteRequerente = scanner.nextInt();
+
+
+
+
+    }
 
 
 
