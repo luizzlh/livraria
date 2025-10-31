@@ -1,13 +1,45 @@
 package br.com.DAO;
 
+import br.com.Exceptions.LivroException;
 import br.com.Repositorio.Conexao;
+import br.com.entidades.Livro;
 import br.com.entidades.Pedido;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PedidoDAO {
-    static Pedido pedido;
+    private static Pedido pedido = new Pedido();
+
+    public static boolean verificaLivroDisponivel(int idLivro){
+
+        String queryVerificaLivro = "SELECT STATUS FROM LIVROS WHERE ID = ?";
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        int statusLivro = 0;
+
+        try{
+
+            preparedStatement = Conexao.getConexao().prepareStatement(queryVerificaLivro);
+            preparedStatement.setInt(1, idLivro);
+            resultSet = preparedStatement.executeQuery();
+
+
+            if (resultSet.next()){
+                statusLivro = resultSet.getInt("STATUS");
+                if(statusLivro > 0){
+                    throw new LivroException("Livro indisponível!");
+                }
+                return true;
+            }
+            preparedStatement.close();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 
     public static void criarPedidoAluguel(int idCliente, int idLivro){
 
@@ -24,6 +56,8 @@ public class PedidoDAO {
             preparedStatement.execute();
 
             preparedStatement.close();
+
+            LivroDAO.atualizarStatusLivroParaAlugado(idLivro);
 
             System.out.println("Pedido criado com sucesso!");
 
