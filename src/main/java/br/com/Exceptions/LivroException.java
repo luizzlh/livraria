@@ -1,8 +1,8 @@
 package br.com.Exceptions;
 
-public class LivroExistenteException extends Exception{
+public class LivroException extends Exception{
 
-    public LivroExistenteException(String error){
+    public LivroException(String error){
         super(error);
     }
 

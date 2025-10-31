@@ -1,8 +1,8 @@
 package br.com.Exceptions;
 
-public class ClienteExistenteException extends Exception{
+public class ClienteException extends Exception{
 
-    public ClienteExistenteException(String error){
+    public ClienteException(String error){
         super(error);
     }
 

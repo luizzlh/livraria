@@ -1,7 +1,6 @@
 package br.com.DAO;
 
-import br.com.Exceptions.ClienteExistenteException;
-import br.com.Exceptions.LivroExistenteException;
+import br.com.Exceptions.ClienteException;
 import br.com.Repositorio.Conexao;
 import br.com.entidades.Cliente;
 
@@ -22,7 +21,7 @@ public class ClienteDAO {
             resultSet = preparedStatementSelect.executeQuery();
 
             if(resultSet.next()){
-                throw new ClienteExistenteException("Cliente existente!");
+                throw new ClienteException("Cliente existente!");
             }else{
                 cadastrarCliente(cliente);
             }

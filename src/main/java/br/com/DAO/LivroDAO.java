@@ -1,13 +1,12 @@
 package br.com.DAO;
 
-import br.com.Exceptions.LivroExistenteException;
+import br.com.Exceptions.LivroException;
 import br.com.Repositorio.Conexao;
 import br.com.entidades.Livro;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLOutput;
 
 public class LivroDAO {
 
@@ -23,7 +22,7 @@ public class LivroDAO {
             resultSet = preparedStatementSelect.executeQuery();
 
             if(resultSet.next()){
-                throw new LivroExistenteException("Livro existente!");
+                throw new LivroException("Livro existente!");
             }else{
                 cadastrarLivro(livro);
             }

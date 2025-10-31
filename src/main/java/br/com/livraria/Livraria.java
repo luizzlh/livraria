@@ -61,14 +61,18 @@ public class Livraria {
     }
 
     public static void menuAlugaLivro(){
+
         System.out.println("------------------");
         System.out.print("Digite o ID do Livro a ser alugado: ");
         int idLivroAluguel = scanner.nextInt();
         System.out.println("Digite o ID do Cliente requerente: ");
         int idClienteRequerente = scanner.nextInt();
 
-
-
+        if(PedidoDAO.verificaLivroDisponivel(idLivroAluguel)){
+            PedidoDAO.criarPedidoAluguel(idClienteRequerente, idLivroAluguel);
+        }else{
+            menuAlugaLivro();
+        }
 
     }
 
