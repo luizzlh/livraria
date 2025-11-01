@@ -10,7 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PedidoDAO {
-    private static Pedido pedido = new Pedido();
+
+    public static Pedido getClienteDevedor(){
+
+    }
 
     public static boolean verificaLivroDisponivel(int idLivro){
 
@@ -35,15 +38,18 @@ public class PedidoDAO {
             }
             preparedStatement.close();
         } catch(Exception e){
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
         return false;
     }
 
     public static void criarPedidoAluguel(int idCliente, int idLivro){
+        Pedido pedido = new Pedido();
 
-        String queryInsertPedido = "INSERT INTO PEDIDOS (IDCLIENTE, IDLIVRO, DATAPEDIDO, STATUS) VALUES (?, ?, CURDATE(), ?)";
+        String queryInsertPedido = "INSERT INTO PEDIDOS (IDCLIENTE, IDLIVRO, DATAPEDIDO, STATUS)" +
+                " VALUES (?, ?, CURDATE(), ?)";
+        String querySelectIdPedido = "SELECT PEDIDO FROM PEDIDOS ORDER BY PEDIDO DESC LIMIT 1;";
 
         PreparedStatement preparedStatement = null;
 
@@ -59,16 +65,18 @@ public class PedidoDAO {
 
             LivroDAO.atualizarStatusLivroParaAlugado(idLivro);
 
+
             System.out.println("Pedido criado com sucesso!");
 
         } catch(SQLException e){
             System.out.println("Não foi possivel criar o pedido: ");
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
     public static void criarPedidoDevolucao(int idCliente, int idLivro){
-        String queryInsertPedido = "INSERT INTO PEDIDOS (IDCLIENTE, IDLIVRO, DATAPEDIDO, STATUS) VALUES (?, ?, CURDATE(), ?)";
+        String queryInsertPedido = "INSERT INTO PEDIDOS (IDCLIENTE, IDLIVRO, DATAPEDIDO, STATUS)" +
+                " VALUES (?, ?, CURDATE(), ?)";
 
         PreparedStatement preparedStatement = null;
 
@@ -86,7 +94,7 @@ public class PedidoDAO {
 
         } catch(SQLException e){
             System.out.println("Não foi possivel fazer o pedido de devolução: ");
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
